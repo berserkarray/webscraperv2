@@ -134,7 +134,13 @@ async def scrape_product(url: str, term: str, max_retries=3) -> str:
         try:
             browser = await launch(
                 headless=True,
-                args=['--no-sandbox', '--disable-setuid-sandbox']
+                args=[
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-gpu',            # Often helpful in headless environments
+                    '--single-process'          # Can sometimes reduce crashes
+                    ]
             )
             page = await browser.newPage()
             logging.info(f"Navigating to {url}")
