@@ -134,7 +134,6 @@ async def scrape_product(url: str, term: str, max_retries=3) -> str:
         try:
             browser = await launch(
                 headless=True,
-                executablePath='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',  # Using system Chrome
                 args=['--no-sandbox', '--disable-setuid-sandbox']
             )
             page = await browser.newPage()
